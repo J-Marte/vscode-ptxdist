@@ -1,0 +1,27 @@
+{
+	"package": {
+		"prefix": [
+			"package"
+		],
+		"body": [
+			"#",
+			"# We provide this package",
+			"#",
+			"PACKAGES-$(PTXCONF_${1/(.*)/${1:/upcase}/}) += $1",
+			"",
+			"#",
+			"# Paths and names",
+			"#",
+			"${1/(.*)/${1:/upcase}/}_VERSION\t:= $3",
+			"${1/(.*)/${1:/upcase}/}_MD5\t\t:=",
+			"${1/(.*)/${1:/upcase}/}\t\t:= $1-$(${1/(.*)/${1:/upcase}/}_VERSION)",
+			"${1/(.*)/${1:/upcase}/}_SUFFIX\t:= $5",
+			"${1/(.*)/${1:/upcase}/}_URL\t\t:= $4/$(${1/(.*)/${1:/upcase}/}).$(${1/(.*)/${1:/upcase}/}_SUFFIX)",
+			"${1/(.*)/${1:/upcase}/}_SOURCE\t:= $(SRCDIR)/$(${1/(.*)/${1:/upcase}/}).$(${1/(.*)/${1:/upcase}/}_SUFFIX)",
+			"${1/(.*)/${1:/upcase}/}_DIR\t\t:= $(BUILDDIR)/$(${1/(.*)/${1:/upcase}/})",
+			"${1/(.*)/${1:/upcase}/}_LICENSE\t:= $6",
+			"${1/(.*)/${1:/upcase}/}_LICENSE_FILES\t:="
+		],
+		"description": "creates a new Ptxdist packages"
+	}
+}

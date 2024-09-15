@@ -1,0 +1,55 @@
+{
+	"name": "vscode-ptxdist",
+	"displayName": "vscode-ptxdist",
+	"description": "vscode extension for ptxdist",
+	"version": "0.0.1",
+	"publisher": "j-marte",
+	"engines": {
+		"vscode": "^1.93.0"
+	},
+	"categories": [
+		"Programming Languages"
+	],
+	"repository": {
+		"url": "https://github.com/J-Marte/vscode-ptxdist"
+	},
+	"contributes": {
+		"languages": [
+			{
+				"id": "ptxdistIn",
+				"extensions": [
+					".in"
+				],
+				"configuration": "./language-configuration.json"
+			},
+			{
+				"id": "ptxdistMake",
+				"extensions": [
+					".make"
+				],
+				"configuration": "./ptxdistMake-language-configuration.json"
+			}
+		],
+		"grammars": [
+			{
+				"language": "ptxdistIn",
+				"scopeName": "source.in",
+				"path": "./syntaxes/ptxdistIn.tmLanguage.json"
+			},
+			{
+				"language": "ptxdistMake",
+				"scopeName": "source.make",
+				"path": "./syntaxes/ptxdistMake.tmLanguage.json"
+			}
+		],
+		"snippets": [
+			{
+				"language": "ptxdistMake",
+				"path": "snippets/ptxdistMake/snippets.json"
+			}
+		]
+	},
+	"devDependencies": {
+		"@vscode/vsce": "^3.7.1"
+	}
+}

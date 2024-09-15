@@ -1,0 +1,167 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "ptxdistMake",
+	"patterns": [
+		{
+			"include": "#comments"
+		},
+		{
+			"include": "#keywords"
+		},
+		{
+			"include": "#stage"
+		},
+		{
+			"include": "#config"
+		},
+		{
+			"include": "#expression"
+		},
+		{
+			"include": "#string"
+		},
+		{
+			"include": "#functionDefinition"
+		}
+	],
+	"repository": {
+		"comments": {
+			"patterns": [
+				{
+					"name": "comment",
+					"match": "^#.*$"
+				}
+			]
+		},
+		"escapeCharacter": {
+			"patterns": [
+				{
+					"name": "constant.character.escape",
+					"match": "\\\\[nrt\"\\\\]"
+				}
+			]
+		},
+		"string": {
+			"patterns": [
+				{
+					"name": "string",
+					"patterns": [
+						{
+							"include": "#escapeCharacter"
+						},
+						{
+							"include": "#expression"
+						}
+					],
+					"begin": "(?<!\\\\)\\\"",
+					"end": "(?<!\\\\)\\\""
+				}
+			]
+		},
+		"functionDefinition": {
+			"patterns": [
+				{
+					"name": "entity.name.function",
+					"match": "(?<=define )\\S+"
+				}
+			]
+		},
+		"number": {
+			"patterns": [
+				{
+					"name": "constant.numeric",
+					"match": "[0-9]"
+				}
+			]
+		},
+		"keywords": {
+			"patterns": [
+				{
+					"name": "keyword.control",
+					"match": "(ifdef|ifndef|ifeq|ifneq|else|endif|define|endef|^\\s@)"
+				}
+			]
+		},
+		"stage": {
+			"patterns": [
+				{
+					"name": "entity.name.class",
+					"match": "\\$\\(STATEDIR\\)/\\S+\\:"
+				}
+			]
+		},
+		"function": {
+			"patterns": [
+				{
+					"begin": "call ",
+					"end": "[a-zA-z/_-]+",
+					"beginCaptures": {
+						"0": {
+							"name": "keyword.control"
+						}
+					},
+					"endCaptures": {
+						"0": {
+							"name": "entity.name.function"
+						}
+					}
+				}
+			]
+		},
+		"config": {
+			"patterns": [
+				{
+					"name": "constant.language",
+					"match": "PTXCONF[a-zA-Z0-9_]+"
+				}
+			]
+		},
+		"expression": {
+			"patterns": [
+				{
+					"include": "#config"
+				},
+				{
+					"include": "#symbol"
+				},
+				{
+					"include": "#function"
+				},
+				{
+					"include": "#paren-expression"
+				},
+				{
+					"include": "#number"
+				},
+				{
+					"include": "#string"
+				}
+			]
+		},
+		"symbol": {
+			"match": "(?<=^|[\\(])[A-Z][a-zA-Z0-9_]+",
+			"name": "variable.parameter"
+		},
+		"paren-expression": {
+			"begin": "\\$\\(",
+			"end": "\\)",
+			"beginCaptures": {
+				"0": {
+					"name": "punctuation.paren.open"
+				}
+			},
+			"endCaptures": {
+				"0": {
+					"name": "punctuation.paren.close"
+				}
+			},
+			"name": "expression.group",
+			"patterns": [
+				{
+					"include": "#expression"
+				}
+			]
+		}
+	},
+	"scopeName": "source.make"
+}
