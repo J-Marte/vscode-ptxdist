@@ -12,13 +12,12 @@
   "contributes": {
     "languages": [{
       "id": "ptxdistIn",
-      "aliases": ["ptxdistIn", "ptxdistIn"],
       "extensions": [".in"],
       "configuration": "./language-configuration.json"
     }],
     "grammars": [{
       "language": "ptxdistIn",
-      "scopeName": "",
+      "scopeName": "source.in",
       "path": "./syntaxes/ptxdistIn.tmLanguage.json"
     }]
   }

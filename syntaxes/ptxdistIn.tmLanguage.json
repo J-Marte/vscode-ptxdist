@@ -3,30 +3,96 @@
 	"name": "ptxdistIn",
 	"patterns": [
 		{
+			"include": "#comments"
+		},
+		{
+			"include": "#constants"
+		},
+		{
+			"include": "#help"
+		},
+		{
 			"include": "#keywords"
 		},
 		{
 			"include": "#strings"
+		},
+		{
+			"include": "#symbol"
 		}
 	],
 	"repository": {
+		"comments": {
+			"patterns": [
+				{
+					"name": "comment",
+					"match": "#.*$"
+				}
+			]
+		},
+		"constants": {
+			"patterns": [
+				{
+					"name": "variable.other.constant",
+					"match": "\\b(m|M|n|N|y|Y)\\b"
+				}
+			]
+		},
+		"symbol": {
+			"patterns": [
+				{
+					"name": "entity.name.class",
+					"match": "\\b[A-Z0-9_]+\\b"
+				}
+			]
+		},
+		"help": {
+			"patterns": [
+				{
+					"name": "constant.numeric",
+					"match": "^\\s+  .*$"
+				}
+			]
+		},
 		"keywords": {
-			"patterns": [{
-				"name": "keyword.control.ptxdistIn",
-				"match": "\\b(if|while|for|return)\\b"
-			}]
+			"patterns": [
+				{
+					"name": "keyword",
+					"match": "\\b(choice|comment|config|endchoice|endmenu|mainmenu|menu|menuconfig|source)\\b"
+				},
+				{
+					"name": "keyword.control",
+					"match": "\\b(endif|if)\\b"
+				},
+				{
+					"name": "keyword",
+					"match": "\\b(allnoconfig_y|defconfig_list|default|depends on|help|imply|modules|option|prompt|range|select|visible if)\\b"
+				},
+				{
+					"name": "keyword",
+					"match": "\\b(bool|def_bool|def_tristate|hex|int|string|tristate)\\b"
+				},
+				{
+					"name": "keyword.operator",
+					"match": "\\B(\\|\\||&&)\\B"
+				},
+				{
+					"name": "keyword.operator",
+					"match": "\\B(\\!)\\b"
+				}
+			]
 		},
 		"strings": {
-			"name": "string.quoted.double.ptxdistIn",
+			"name": "string",
 			"begin": "\"",
 			"end": "\"",
 			"patterns": [
 				{
-					"name": "constant.character.escape.ptxdistIn",
+					"name": "constant.character.escape",
 					"match": "\\\\."
 				}
 			]
 		}
 	},
-	"scopeName": ""
+	"scopeName": "source.in"
 }
