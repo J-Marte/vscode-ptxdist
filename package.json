@@ -19,6 +19,13 @@
 					".in"
 				],
 				"configuration": "./language-configuration.json"
+			},
+			{
+				"id": "ptxdistMake",
+				"extensions": [
+					".make"
+				],
+				"configuration": "./ptxdistMake-language-configuration.json"
 			}
 		],
 		"grammars": [
@@ -26,6 +33,17 @@
 				"language": "ptxdistIn",
 				"scopeName": "source.in",
 				"path": "./syntaxes/ptxdistIn.tmLanguage.json"
+			},
+			{
+				"language": "ptxdistMake",
+				"scopeName": "source.make",
+				"path": "./syntaxes/ptxdistMake.tmLanguage.json"
+			}
+		],
+		"snippets": [
+			{
+				"language": "ptxdistMake",
+				"path": "snippets/ptxdistMake/snippets.json"
 			}
 		]
 	}
